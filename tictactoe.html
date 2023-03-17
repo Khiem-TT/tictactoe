@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic tac toe</title>
+</head>
+<body>
+<h1>Caro game simple</h1>
+<p id="carogame"></p>
+<button onclick="changeValue()">Play</button>
+<script>
+    let result = document.getElementById('carogame');
+    let data = '';
+    let board = [];
+    let h = 1;
+    for (let i = 0; i < 5; i++) {
+        board[i] = ['(.)', '(.)', '(.)', '(.)', '(.)'];
+    }
+    for (let i = 0; i < 5; i++) {
+        data += '<br>';
+        for (let j = 0; j < 5; j++) {
+            data += board[i][j] + '&nbsp;&nbsp;';
+        }
+    }
+    result.innerHTML = data;
+
+    function changeValue() {
+        let data = '';
+        let positionX = prompt('X: ');
+        let positionY = prompt('Y: ');
+        if (h % 2 === 0) {
+            board[positionX][positionY] = '&nbsp;o';
+        } else {
+            board[positionX][positionY] = '&nbsp;x';
+        }
+        h++;
+        for (let i = 0; i < 5; i++) {
+            data += '<br>';
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + '&nbsp;&nbsp;';
+            }
+        }
+        result.innerHTML = data;
+
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < 5; j++) {
+                if (board[i][j] === '&nbsp;o' && board[i][j + 1] === '&nbsp;o' && board[i][j + 2] === '&nbsp;o'
+                    || board[i][j] === '&nbsp;o' && board[i + 1][j] === '&nbsp;o' && board[i + 2][j] === '&nbsp;o'
+                    || board[i][j] === '&nbsp;o' && board[i + 1][j + 1] === '&nbsp;o' && board[i + 2][j + 2] === '&nbsp;o'
+                    || board[i][j] === '&nbsp;o' && board[i + 1][j - 1] === '&nbsp;o' && board[i + 2][j - 2] === '&nbsp;o') {
+                    alert('o win');
+                } else if (board[i][j] === '&nbsp;x' && board[i][j + 1] === '&nbsp;x' && board[i][j + 2] === '&nbsp;x'
+                    || board[i][j] === '&nbsp;x' && board[i + 1][j] === '&nbsp;x' && board[i + 2][j] === '&nbsp;x'
+                    || board[i][j] === '&nbsp;x' && board[i + 1][j + 1] === '&nbsp;x' && board[i + 2][j + 2] === '&nbsp;x'
+                    || board[i][j] === '&nbsp;x' && board[i + 1][j - 1] === '&nbsp;x' && board[i + 2][j - 2] === '&nbsp;x') {
+                    alert('x win');
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
